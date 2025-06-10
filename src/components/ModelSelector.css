@@ -1,0 +1,25 @@
+.model-selector-container {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.model-selector {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  appearance: none;        /* Quita estilos nativos */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-align-last: center; /* Centra el texto en algunos navegadores */
+  width: 200px;            /* Ancho fijo para que sea botón uniforme */
+}
+
+.model-selector:hover {
+  background-color: #0056b3;
+}

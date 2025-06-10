@@ -1,0 +1,256 @@
+/* Estilos generales para centrar el contenido */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  position: relative;
+  padding-top: 70px; /* Espacio para la navbar */
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo .logo-icon {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #555;
+  font-size: 16px;
+}
+
+.navbar-links a:hover {
+  color: #000;
+}
+
+/* Contenedor centrado para uploader, selector y botón */
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+/* Estilo común para botones (Insertar Imagen, Cargar Modelo) */
+.button-style {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.button-style:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.button-style:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Input file oculto */
+.file-input {
+  display: none;
+}
+
+/* Estilo del label que funciona como botón para subir imagen */
+.custom-file-upload {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.custom-file-upload:hover {
+  background-color: #0056b3;
+}
+
+/* Selector de modelos */
+select {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #007bff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #333;
+  min-width: 200px;
+  text-align-last: center; /* Centra el texto seleccionado en Firefox */
+  appearance: none; /* Quita el estilo nativo en algunos navegadores */
+  background-color: white;
+  transition: border-color 0.3s ease;
+}
+
+select:hover,
+select:focus {
+  border-color: #0056b3;
+  outline: none;
+}
+
+/* Contenedor principal para diagnóstico con 2 paneles */
+.content-container {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 60px); /* altura total menos navbar */
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.left-panel {
+  flex: 3; /* ocupa 75% */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.right-panel {
+  flex: 1; /* ocupa 25% */
+  background-color: #f0f0f0;
+  border-left: 1px solid #ddd;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(100vh - 100px); /* que no se pase del viewport */
+  box-sizing: border-box;
+}
+
+/* Previsualización de la imagen */
+.image-preview {
+  max-width: 400px;
+  max-height: 400px;
+  margin-bottom: 20px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.logo-image {
+  height: 50px; /* Ajusta el tamaño según sea necesario */
+  width: auto;  /* Mantiene la proporción de la imagen */
+}
+
+/* Disposición de la pantalla dividida */
+.content-container {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+}
+
+.left-panel {
+  width: 75%; /* 3/4 para la imagen */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right-panel {
+  width: 25%; /* 1/4 para las detecciones */
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-left: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+.diagnosis-result {
+  font-size: 1rem;
+  color: #333;
+}
+
+.diagnosis-result h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.diagnosis-result ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.diagnosis-result li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Contenedor que centra y alinea horizontalmente */
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* Espacio uniforme entre elementos */
+  margin-top: 1rem;
+  flex-wrap: wrap; /* Que se adapten en pantallas pequeñas */
+}
+
+/* Estilo común para el selector y botones */
+select,
+.button-style,
+.custom-file-upload {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+/* Efecto hover */
+select:hover,
+.button-style:hover,
+.custom-file-upload:hover {
+  background-color: #0056b3;
+}
+
+/* Quitar borde y sombra por defecto de select */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Ajustar select para que tenga tamaño similar a botones */
+select {
+  min-width: 150px;
+}
+
+/* Input file oculto */
+.file-input {
+  display: none;
+}

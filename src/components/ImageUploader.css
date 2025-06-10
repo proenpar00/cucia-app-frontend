@@ -1,0 +1,22 @@
+.upload-container {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.file-input {
+  display: none;
+}
+
+.custom-file-upload {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+  background-color: #0056b3;
+}
