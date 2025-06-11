@@ -4,14 +4,12 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm install
-
-# Solución al problema de permisos
-RUN chmod +x ./node_modules/.bin/react-scripts
+RUN npm ci
 
 COPY . .
 
-RUN npm run build
+# Fix de permisos en el mismo paso
+RUN chmod +x ./node_modules/.bin/react-scripts && npm run build
 
 RUN npm install -g serve
 
