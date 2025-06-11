@@ -39,7 +39,7 @@ const App = () => {
     formData.append('model', model);
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API}/api/v1/image`, formData, {
+      const response = await axios.post(`https://cucia-service.onrender.com/api/v1/image`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
@@ -62,7 +62,7 @@ const App = () => {
 
     setLoading(true);
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/api/v1/image/${imageId}`);
+      const response = await axios.get(`https://cucia-service.onrender.com/api/v1/image/${imageId}`);
       setPreviewUrl(`data:image/jpeg;base64,${response.data.base64}`);
       setResult(response.data);
     } catch (error) {
