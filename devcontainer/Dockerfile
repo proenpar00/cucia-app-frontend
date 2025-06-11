@@ -6,9 +6,12 @@ COPY package.json package-lock.json ./
 
 RUN npm ci
 
+# Copiar el archivo .env para que las variables estén disponibles durante el build
+COPY .env ./
+
 COPY . .
 
-# Fix de permisos en el mismo paso
+# Fix de permisos y build en un solo paso
 RUN chmod +x ./node_modules/.bin/react-scripts && npm run build
 
 RUN npm install -g serve
