@@ -1,21 +1,30 @@
-FROM node:21-alpine
+# Imagen base con Node y Python en entorno compatible
+FROM node:21-bullseye
+
+# Instalar Python, pip y git
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip python3-venv git && \
+    apt-get clean
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+# Crear entorno virtual
+RUN python3 -m venv /venv
+ENV PATH="/venv/bin:$PATH"
 
+# Copiar e instalar dependencias Node.js
+COPY package*.json ./
 RUN npm ci
 
-# Copiar el archivo .env para que las variables estén disponibles durante el build
-COPY .env ./
+# Copiar e instalar dependencias Python
+COPY requirements.txt ./
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
+# Copiar el resto del proyecto
 COPY . .
 
-# Fix de permisos y build en un solo paso
-RUN chmod +x ./node_modules/.bin/react-scripts && npm run build
+# Crear carpeta uploads
+RUN mkdir -p uploads
 
-RUN npm install -g serve
-
-EXPOSE 3001
-
-CMD ["serve", "-s", "build", "-l", "3001"]
+EXPOSE 3000
+CMD ["node", "app.js"]
