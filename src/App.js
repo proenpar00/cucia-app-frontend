@@ -46,6 +46,7 @@ const App = () => {
       if (response.data?.id) {
         setImageId(response.data.id);
         setModelLoaded(true);
+        alert('Modelo cargado. Ahora puedes obtener el diagnóstico.');
       }
     } catch (error) {
       alert('Error al cargar el modelo: ' + error.message);
