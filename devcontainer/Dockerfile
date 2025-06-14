@@ -17,7 +17,6 @@ COPY package*.json ./
 RUN npm ci
 
 # Copiar e instalar dependencias Python
-COPY requirements.txt ./
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 # Copiar el resto del proyecto
