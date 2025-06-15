@@ -29,7 +29,7 @@ const App = () => {
     setLoading(true);
     try {
       // La URL fija que mencionaste
-      const response = await axios.get('https://cucia-service.onrender.com/api/v1/image/1');
+      const response = await axios.get('https://cucia-service.onrender.com/api/v1/image/10');
 
       const base64Image = `data:image/jpeg;base64,${response.data.base64}`;
       setPreviewUrl(base64Image);
@@ -45,33 +45,44 @@ const App = () => {
   return (
     <div className="app-container">
       <NavBar />
-      <div className="intro-container">
-        {!previewUrl && (
+
+      {!previewUrl && (
+        <div className="intro-container">
           <div className="title-container">
             <h1 className="main-title">CUCIA</h1>
             <h4 className="subtitle">Cervix Uteri Cancer IA</h4>
           </div>
-        )}
 
-        {previewUrl && <ImagePreview previewUrl={previewUrl} />}
-
-        <div className="centered-container">
-          <ImageUploader onImageChange={handleImageChange} />
-          {selectedImage && (
-            <DiagnosisButton
-              modelLoaded={true}  // Siempre habilitado porque ya tienes imagen
-              onClick={handleShowDiagnosis}
-              loading={loading}
-            />
-          )}
-        </div>
-
-        {diagnosisShown && (
-          <div className="diagnosis-result-container">
-            <DiagnosisResult detections={result?.detections || []} />
+          <div className="centered-container">
+            <ImageUploader onImageChange={handleImageChange} />
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {previewUrl && (
+        <div className="content-container">
+          <div className="left-panel">
+            <ImagePreview previewUrl={previewUrl} />
+
+            <div className="centered-container" style={{ marginTop: '1rem' }}>
+              <DiagnosisButton
+                modelLoaded={true}
+                onClick={handleShowDiagnosis}
+                loading={loading}
+              />
+              <ImageUploader onImageChange={handleImageChange} />
+            </div>
+          </div>
+
+          <div className="right-panel">
+            {diagnosisShown ? (
+              <DiagnosisResult detections={result?.detections || []} />
+            ) : (
+              <p>No hay diagnóstico disponible.</p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
