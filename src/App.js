@@ -28,9 +28,7 @@ const App = () => {
   const handleShowDiagnosis = async () => {
     setLoading(true);
     try {
-      // La URL fija que mencionaste
-      const response = await axios.get('https://cucia-service.onrender.com/api/v1/image/10');
-
+      const response = await axios.get('https://cucia-service.onrender.com/api/v1/image/1');
       const base64Image = `data:image/jpeg;base64,${response.data.base64}`;
       setPreviewUrl(base64Image);
       setResult(response.data);
@@ -74,13 +72,11 @@ const App = () => {
             </div>
           </div>
 
-          <div className="right-panel">
-            {diagnosisShown ? (
+          {diagnosisShown && (
+            <div className="right-panel">
               <DiagnosisResult detections={result?.detections || []} />
-            ) : (
-              <p>No hay diagnóstico disponible.</p>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       )}
     </div>
