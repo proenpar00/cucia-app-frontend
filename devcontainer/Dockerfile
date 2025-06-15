@@ -1,31 +1,29 @@
-# Imagen base con Node y Python en entorno compatible
-FROM node:21-bullseye
-
-# Instalar Python, pip y git
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip python3-venv git && \
-    apt-get clean
+# Etapa 1: Build de React
+FROM node:21-bullseye AS builder
 
 WORKDIR /app
 
-# Crear entorno virtual
-RUN python3 -m venv /venv
-ENV PATH="/venv/bin:$PATH"
-
-# Copiar e instalar dependencias Node.js
+# Copiar e instalar dependencias
 COPY package*.json ./
 RUN npm ci
 
-# Copiar e instalar dependencias Python
-COPY src/requirements.txt ./requirements.txt
-
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
-
-# Copiar el resto del proyecto
+# Copiar el resto del código y compilar
 COPY . .
+RUN npm run build
 
-# Crear carpeta uploads
-RUN mkdir -p uploads
+# Etapa 2: Imagen final para servir archivos estáticos
+FROM node:21-bullseye
 
-EXPOSE 3000
-CMD ["node", "app.js"]
+WORKDIR /app
+
+# Instalar solo `serve` para producción
+RUN npm install -g serve
+
+# Copiar build generado
+COPY --from=builder /app/build ./build
+
+# Exponer el puerto usado por `serve`
+EXPOSE 3001
+
+# Comando para servir la app
+CMD ["serve", "-s", "build", "-l", "3001"]
