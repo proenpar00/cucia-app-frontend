@@ -28,7 +28,7 @@ const App = () => {
   const handleShowDiagnosis = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('https://cucia-service.onrender.com/api/v1/image/1');
+      const response = await axios.get('https://cucia-service.onrender.com/api/v1/image/10');
       const base64Image = `data:image/jpeg;base64,${response.data.base64}`;
       setPreviewUrl(base64Image);
       setResult(response.data);
